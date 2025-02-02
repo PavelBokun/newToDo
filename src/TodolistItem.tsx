@@ -1,29 +1,38 @@
-
-export const TodolistItem = (props:any)=>{
-
-    return (
-        <div>
-        <h3>{props.title}</h3>
-          <div>
-            <input/>
-            <button>+</button>
-          </div>
-          <ul>
-            <li>
-              <input type="checkbox" checked={true}/> <span>HTML&CSS</span>
+type Props = {
+  title: string;
+  // subTitle: string
+  // description: string
+  tasks: Task[];
+  date?: string;
+};
+type Task = {
+  id: number;
+  title: string;
+  isDone: boolean;
+};
+export const TodolistItem = ({ title, tasks }: Props) => {
+  return (
+    <div>
+      <h3>{title}</h3>
+      <div>
+        <input />
+        <button>+</button>
+      </div>
+      <ul>
+        {tasks.map((task) => {
+          return (
+            <li key={task.id}>
+              <input type="checkbox" checked={task.isDone} />
+              <span>{task.title}</span>
             </li>
-            <li>
-              <input type="checkbox" checked={true}/> <span>JS</span>
-            </li>
-            <li>
-              <input type="checkbox" checked={false}/> <span>React</span>
-            </li>
-          </ul>
-          <div>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
-          </div>
-        </div>
-    )
-  }
+          );
+        })}
+      </ul>
+      <div>
+        <button>All</button>
+        <button>Active</button>
+        <button>Completed</button>
+      </div>
+    </div>
+  );
+};
