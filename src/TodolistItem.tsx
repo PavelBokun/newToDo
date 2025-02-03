@@ -1,7 +1,7 @@
+import { Button } from "./button";
+
 type Props = {
   title: string;
-  // subTitle: string
-  // description: string
   tasks: Task[];
   date?: string;
 };
@@ -11,6 +11,7 @@ type Task = {
   isDone: boolean;
 };
 export const TodolistItem = ({ title, tasks }: Props) => {
+  
   return (
     <div>
       <h3>{title}</h3>
@@ -18,20 +19,25 @@ export const TodolistItem = ({ title, tasks }: Props) => {
         <input />
         <button>+</button>
       </div>
-      <ul>
-        {tasks.map((task) => {
-          return (
-            <li key={task.id}>
-              <input type="checkbox" checked={task.isDone} />
-              <span>{task.title}</span>
-            </li>
-          );
-        })}
-      </ul>
-      <div>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+      {tasks.length === 0 ? (
+        <span>No tasks</span>
+      ) : (
+        <ul>
+          {tasks.map((task) => {
+            return (
+              <li key={task.id}>
+                <input type="checkbox" checked={task.isDone} />
+                <span>{task.title}</span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+
+      <div className="button">
+      <Button title={'All'} />
+        <Button title={'Active'} />
+        <Button title={'Completed'} />
       </div>
     </div>
   );
