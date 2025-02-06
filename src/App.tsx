@@ -1,4 +1,5 @@
 import "./App.css";
+import { Count } from "./count";
 import { Button } from "./dd";
 import { Filter } from "./filter";
 import { TodolistItem } from "./TodolistItem";
@@ -36,6 +37,7 @@ export const App = () => {
       <Button />
       <Car car={topCars}/>
       <Filter />
+      <Count />
     </div>
   );
 };
