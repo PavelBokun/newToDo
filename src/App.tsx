@@ -1,19 +1,20 @@
+import { useState } from "react";
 import "./App.css";
 import { Count } from "./count";
 import { Button } from "./dd";
 import { Filter } from "./filter";
-import { TodolistItem } from "./TodolistItem";
+import { Task, TodolistItem } from "./TodolistItem";
 import { Car } from "./topcar";
 
 export const App = () => {
-  const tasks1 = [
+  const [tasks, setTask] = useState<Task[]> ([
     { id: 1, title: "HTML&CSS", isDone: true },
     { id: 2, title: "JS", isDone: true },
     { id: 3, title: "ReactJS", isDone: false },
     { id: 4, title: "Redux", isDone: false },
     { id: 5, title: "Typescript", isDone: false },
     { id: 6, title: "RTK query", isDone: false },
-  ];
+  ]);
 
   const tasks2 = [
     { id: 1, title: "Hello world", isDone: true },
@@ -28,16 +29,21 @@ export const App = () => {
     {id:3, manufacturer:'Audi', model:'rs6'}
   ]
 
-  
+  const delTasks=(taskId: number)=>{
+    let delTasknumber =tasks.filter((b)=>b.id !== taskId)
+
+    setTask(delTasknumber)
+    
+      }
 
   return (
     <div className="app">
-      <TodolistItem title="What to learn" tasks={tasks1} date={""} />
-      <TodolistItem title="Songs" tasks={tasks2} />
+      <TodolistItem title="What to learn" tasks={tasks} delTasks={delTasks} />
+      <TodolistItem title="Songs" tasks={tasks2} delTasks={delTasks} />
       <Button />
       <Car car={topCars}/>
       <Filter />
-      <Count />
+      {/* <Count /> */}
     </div>
   );
 };

@@ -57,7 +57,7 @@ export const Button = () => {
   const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
     const t=(typeof e === 'object')
     if(t){
-      alert(e.target)
+      console.log(e.target, e)
     }
     
   }
