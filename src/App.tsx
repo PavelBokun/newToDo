@@ -6,7 +6,14 @@ import { Filter } from "./filter";
 import { Task, TodolistItem } from "./TodolistItem";
 import { Car } from "./topcar";
 
+
+
+
+export type FilterValues = 'all' | 'active' | 'completed'
+
 export const App = () => {
+
+ 
   const [tasks, setTask] = useState<Task[]> ([
     { id: 1, title: "HTML&CSS", isDone: true },
     { id: 2, title: "JS", isDone: true },
@@ -29,17 +36,31 @@ export const App = () => {
     {id:3, manufacturer:'Audi', model:'rs6'}
   ]
 
+  
   const delTasks=(taskId: number)=>{
     let delTasknumber =tasks.filter((b)=>b.id !== taskId)
 
     setTask(delTasknumber)
     
       }
+      const [filter,setFilter]=useState<FilterValues>('all')
 
+      let filteredTasks = tasks
+      if (filter === 'active') {
+        filteredTasks = tasks.filter(task => !task.isDone)
+      }
+      if (filter === 'completed') {
+        filteredTasks = tasks.filter(task => task.isDone)
+      }
+      const setFiltered=(filter:FilterValues)=>{
+              setFilter (filter)
+        console.log(filter)
+      }
+    
   return (
     <div className="app">
-      <TodolistItem title="What to learn" tasks={tasks} delTasks={delTasks} />
-      <TodolistItem title="Songs" tasks={tasks2} delTasks={delTasks} />
+      <TodolistItem title="What to learn" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered} />
+      <TodolistItem title="Songs" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered} />
       <Button />
       <Car car={topCars}/>
       <Filter />

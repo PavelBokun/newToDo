@@ -1,3 +1,4 @@
+import { FilterValues } from "./App";
 import { Button } from "./button";
 
 type Props = {
@@ -5,13 +6,14 @@ type Props = {
   tasks: Task[];
   date?: string;
   delTasks: (id: number) => void;
+  setFiltered: (filter: FilterValues) => void;
 };
  export type Task = {
   id: number;
   title: string;
   isDone: boolean;
 };
-export const TodolistItem = ({ title, tasks,delTasks }: Props) => {
+export const TodolistItem = ({ title, tasks,delTasks,setFiltered }: Props) => {
   
   
 
@@ -39,9 +41,9 @@ export const TodolistItem = ({ title, tasks,delTasks }: Props) => {
       )}
 
       <div className="button">
-      <Button title={'All'} onClick={() => {}}/>
-        <Button title={'Active'}onClick={() => {}} />
-        <Button title={'Completed'} onClick={() => {}}/>
+      <Button title={'All'} onClick={() => {setFiltered('all')}}/>
+        <Button title={'Active'}onClick={() => {setFiltered('active')}} />
+        <Button title={'Completed'} onClick={() => {setFiltered('completed')}}/>
       </div>
     </div>
   );
