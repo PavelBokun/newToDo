@@ -9,7 +9,7 @@ type Props = {
   setFiltered: (filter: FilterValues) => void;
 };
  export type Task = {
-  id: number;
+  id:any ;
   title: string;
   isDone: boolean;
 };
