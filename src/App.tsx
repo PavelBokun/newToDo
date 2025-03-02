@@ -38,11 +38,17 @@ export const App = () => {
   ]
 
   
-  const delTasks=(taskId: number)=>{
+  const delTasks=(taskId: string)=>{
     let delTasknumber =tasks.filter((b)=>b.id !== taskId)
 
     setTask(delTasknumber)
-    
+    console.log(delTasknumber)
+      }
+
+      const addTask=()=>{
+        let newtask={id:v1(),title:'new task', isDone:false}
+        let newTasks=[newtask, ...tasks]
+        setTask(newTasks)
       }
       const [filter,setFilter]=useState<FilterValues>('all')
 
@@ -60,8 +66,8 @@ export const App = () => {
     
   return (
     <div className="app">
-      <TodolistItem title="What to learn" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered} />
-      <TodolistItem title="Songs" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered} />
+      <TodolistItem title="What to learn" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered} addTask={addTask} />
+      <TodolistItem title="Songs" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered}addTask={addTask} />
       <Button />
       <Car car={topCars}/>
       <Filter />

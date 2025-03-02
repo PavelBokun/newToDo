@@ -5,15 +5,16 @@ type Props = {
   title: string;
   tasks: Task[];
   date?: string;
-  delTasks: (id: number) => void;
+  delTasks: (id: string) => void;
   setFiltered: (filter: FilterValues) => void;
+  addTask: () => void;
 };
  export type Task = {
-  id:any ;
+  id: string ;
   title: string;
   isDone: boolean;
 };
-export const TodolistItem = ({ title, tasks,delTasks,setFiltered }: Props) => {
+export const TodolistItem = ({ title, tasks,delTasks,setFiltered,addTask }: Props) => {
   
   
 
@@ -22,7 +23,7 @@ export const TodolistItem = ({ title, tasks,delTasks,setFiltered }: Props) => {
       <h3>{title}</h3>
       <div>
         <input />
-        <button>+</button>
+        <button onClick={()=>addTask()}>+</button>
       </div>
       {tasks.length === 0 ? (
         <span>No tasks</span>
