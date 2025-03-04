@@ -45,10 +45,11 @@ export const App = () => {
     console.log(delTasknumber)
       }
 
-      const addTask=()=>{
-        let newtask={id:v1(),title:'new task', isDone:false}
+      const addTask=(title:string)=>{
+        let newtask={id:v1(),title:title, isDone:false}
         let newTasks=[newtask, ...tasks]
         setTask(newTasks)
+        
       }
       const [filter,setFilter]=useState<FilterValues>('all')
 

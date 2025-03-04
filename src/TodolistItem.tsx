@@ -1,3 +1,4 @@
+import { ChangeEvent, useState } from "react";
 import { FilterValues } from "./App";
 import { Button } from "./button";
 
@@ -7,7 +8,7 @@ type Props = {
   date?: string;
   delTasks: (id: string) => void;
   setFiltered: (filter: FilterValues) => void;
-  addTask: () => void;
+  addTask: (title:string) => void;
 };
  export type Task = {
   id: string ;
@@ -16,14 +17,32 @@ type Props = {
 };
 export const TodolistItem = ({ title, tasks,delTasks,setFiltered,addTask }: Props) => {
   
-  
+  const [newTaskTitle,setTaskTitle]=useState('')
 
+  const onChengeHandler= (e:ChangeEvent<HTMLInputElement>)=>{
+    setTaskTitle(e.currentTarget.value)
+  }
+  
     return (
     <div>
       <h3>{title}</h3>
       <div>
-        <input />
-        <button onClick={()=>addTask()}>+</button>
+        <input type='text' value={newTaskTitle} onChange={onChengeHandler}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") { // Используем e.key вместо e.charCode
+            addTask(newTaskTitle);
+            setTaskTitle("");
+        }
+    }} />
+        <button 
+    onClick={() => {
+        addTask(newTaskTitle);
+        setTaskTitle("");
+    }} 
+    
+>
+    +
+</button>
       </div>
       {tasks.length === 0 ? (
         <span>No tasks</span>
