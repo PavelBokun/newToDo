@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent,KeyboardEventHandler, useState } from "react";
 import { FilterValues } from "./App";
 import { Button } from "./button";
 
@@ -23,22 +23,35 @@ export const TodolistItem = ({ title, tasks,delTasks,setFiltered,addTask }: Prop
     setTaskTitle(e.currentTarget.value)
   }
   
+  const onPressHandler=(e:React.KeyboardEvent<HTMLInputElement>)=>{
+    if (e.key === "Enter") { // Используем e.key вместо e.charCode
+      addTask(newTaskTitle);
+      setTaskTitle("");
+  }}
+
+  const addTasks=()=>{
+    addTask(newTaskTitle);
+    setTaskTitle("");
+  }
+  
+  const allFiltered=()=>{
+    setFiltered('all')
+  }
+  
+  const filteredActive=()=>{
+    setFiltered('active')
+  }
+  const filteredComplited=()=>{
+    setFiltered('completed')
+  }
     return (
     <div>
       <h3>{title}</h3>
       <div>
         <input type='text' value={newTaskTitle} onChange={onChengeHandler}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") { // Используем e.key вместо e.charCode
-            addTask(newTaskTitle);
-            setTaskTitle("");
-        }
-    }} />
+      onKeyDown= {onPressHandler} />
         <button 
-    onClick={() => {
-        addTask(newTaskTitle);
-        setTaskTitle("");
-    }} 
+    onClick={addTasks} 
     
 >
     +
@@ -49,11 +62,12 @@ export const TodolistItem = ({ title, tasks,delTasks,setFiltered,addTask }: Prop
       ) : (
         <ul>
           {tasks.map((task) => {
+            const delTasksHandler = () => delTasks(task.id);
             return (
               <li key={task.id}>
                 <input type="checkbox" checked={task.isDone} />
                 <span>{task.title}</span>
-                <Button title= {'x'} onClick={()=>delTasks(task.id)}/>
+                <Button title= {'x'} onClick={delTasksHandler}/>
               </li>
             );
           })}
@@ -61,9 +75,9 @@ export const TodolistItem = ({ title, tasks,delTasks,setFiltered,addTask }: Prop
       )}
 
       <div className="button">
-      <Button title={'All'} onClick={() => {setFiltered('all')}}/>
-        <Button title={'Active'}onClick={() => {setFiltered('active')}} />
-        <Button title={'Completed'} onClick={() => {setFiltered('completed')}}/>
+      <Button title={'All'} onClick={allFiltered}/>
+        <Button title={'Active'}onClick={filteredActive} />
+        <Button title={'Completed'} onClick={filteredComplited}/>
       </div>
     </div>
   );
