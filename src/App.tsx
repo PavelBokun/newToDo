@@ -7,15 +7,10 @@ import { Task, TodolistItem } from "./TodolistItem";
 import { Car } from "./topcar";
 import { v1 } from "uuid";
 
-
-
-
-export type FilterValues = 'all' | 'active' | 'completed'
+export type FilterValues = "all" | "active" | "completed";
 
 export const App = () => {
-
- 
-  const [tasks, setTask] = useState<Task[]> ([
+  const [tasks, setTask] = useState<Task[]>([
     { id: v1(), title: "HTML&CSS", isDone: true },
     { id: v1(), title: "JS", isDone: true },
     { id: v1(), title: "ReactJS", isDone: false },
@@ -30,47 +25,61 @@ export const App = () => {
     { id: 3, title: "Yo", isDone: false },
     { id: 4, title: "Redux", isDone: false },
   ];
-  
+
   const topCars = [
-    {id:1, manufacturer:'BMW', model:'m5cs'},
-    { id:2, manufacturer:'Mercedes', model:'e63s'},
-    {id:3, manufacturer:'Audi', model:'rs6'}
-  ]
+    { id: 1, manufacturer: "BMW", model: "m5cs" },
+    { id: 2, manufacturer: "Mercedes", model: "e63s" },
+    { id: 3, manufacturer: "Audi", model: "rs6" },
+  ];
 
-  
-  const delTasks=(taskId: string)=>{
-    let delTasknumber =tasks.filter((b)=>b.id !== taskId)
+  const delTasks = (taskId: string) => {
+    let delTasknumber = tasks.filter((b) => b.id !== taskId);
+    setTask(delTasknumber);
+  };
 
-    setTask(delTasknumber)
-    console.log(delTasknumber)
-      }
+  const addTask = (title: string) => {
+    let newtask = { id: v1(), title: title, isDone: false };
+    let newTasks = [newtask, ...tasks];
+    setTask(newTasks);
+  };
+  const changeTaskStatus = (taskId: string, isDone: boolean) => {
+    debugger;
+  };
 
-      const addTask=(title:string)=>{
-        let newtask={id:v1(),title:title, isDone:false}
-        let newTasks=[newtask, ...tasks]
-        setTask(newTasks)
-        
-      }
-      const [filter,setFilter]=useState<FilterValues>('all')
+  const [filter, setFilter] = useState<FilterValues>("all");
 
-      let filteredTasks = tasks
-      if (filter === 'active') {
-        filteredTasks = tasks.filter(task => !task.isDone)
-      }
-      if (filter === 'completed') {
-        filteredTasks = tasks.filter(task => task.isDone)
-      }
-      const setFiltered=(filter:FilterValues)=>{
-              setFilter (filter)
-        console.log(filter)
-      }
-    
+  let filteredTasks = tasks;
+  if (filter === "active") {
+    filteredTasks = tasks.filter((task) => !task.isDone);
+  }
+  if (filter === "completed") {
+    filteredTasks = tasks.filter((task) => task.isDone);
+  }
+  const setFiltered = (filter: FilterValues) => {
+    setFilter(filter);
+    console.log(filter);
+  };
+
   return (
     <div className="app">
-      <TodolistItem title="What to learn" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered} addTask={addTask} />
-      <TodolistItem title="Songs" tasks={filteredTasks} delTasks={delTasks} setFiltered={setFiltered}addTask={addTask} />
+      <TodolistItem
+        title="What to learn"
+        tasks={filteredTasks}
+        delTasks={delTasks}
+        setFiltered={setFiltered}
+        addTask={addTask}
+        changeTaskStatus={changeTaskStatus}
+      />
+      <TodolistItem
+        title="Songs"
+        tasks={filteredTasks}
+        delTasks={delTasks}
+        setFiltered={setFiltered}
+        addTask={addTask}
+        changeTaskStatus={changeTaskStatus}
+      />
       <Button />
-      <Car car={topCars}/>
+      <Car car={topCars} />
       <Filter />
       {/* <Count /> */}
     </div>
