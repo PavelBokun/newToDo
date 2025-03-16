@@ -42,9 +42,18 @@ export const App = () => {
     let newTasks = [newtask, ...tasks];
     setTask(newTasks);
   };
+  // можно и так
+  // const changeTaskStatus = (taskId: string, isDone: boolean) => {
+  //   const task=tasks.find((b)=>b.id===taskId)
+  //   if (task){
+  //     task.isDone=isDone
+  //   }
+  //   setTask([...tasks])
+  // };
   const changeTaskStatus = (taskId: string, isDone: boolean) => {
-    debugger;
-  };
+    const newState = tasks.map(task => task.id == taskId ? { ...task, isDone } : task)
+    setTask(newState)
+  }
 
   const [filter, setFilter] = useState<FilterValues>("all");
 

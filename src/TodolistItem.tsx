@@ -1,4 +1,4 @@
-import { ChangeEvent,  useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FilterValues } from "./App";
 import { Button } from "./button";
 
@@ -9,7 +9,7 @@ type Props = {
   delTasks: (id: string) => void;
   setFiltered: (filter: FilterValues) => void;
   addTask: (title: string) => void;
-  changeTaskStatus: (taskId: string, newStatusValue: boolean) => void
+  changeTaskStatus: (taskId: string, newStatusValue: boolean) => void;
 };
 export type Task = {
   id: string;
@@ -22,7 +22,7 @@ export const TodolistItem = ({
   delTasks,
   setFiltered,
   addTask,
-  changeTaskStatus
+  changeTaskStatus,
 }: Props) => {
   const [newTaskTitle, setTaskTitle] = useState("");
 
@@ -39,16 +39,17 @@ export const TodolistItem = ({
   };
 
   const addTasks = () => {
-    addTask(newTaskTitle);
-    setTaskTitle("");
+    const trimmedTitle = newTaskTitle.trim()
+    if (trimmedTitle !== "") {
+      addTask(trimmedTitle);
+      setTaskTitle("");
+    }
   };
 
   const allFiltered = () => {
     setFiltered("all");
   };
 
- 
- 
   const filteredActive = () => {
     setFiltered("active");
   };
@@ -73,15 +74,20 @@ export const TodolistItem = ({
         <ul>
           {tasks.map((task) => {
             const delTasksHandler = () => delTasks(task.id);
-            const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-              debugger
-              const newStatusValue = e.currentTarget.checked
-               changeTaskStatus(task.id, newStatusValue)
-              console.log(newStatusValue)
-            }
+            const changeTaskStatusHandler = (
+              e: ChangeEvent<HTMLInputElement>
+            ) => {
+              const newStatusValue = e.currentTarget.checked;
+              changeTaskStatus(task.id, newStatusValue);
+              console.log(newStatusValue);
+            };
             return (
               <li key={task.id}>
-                <input type="checkbox" checked={task.isDone} onChange={changeTaskStatusHandler} />
+                <input
+                  type="checkbox"
+                  checked={task.isDone}
+                  onChange={changeTaskStatusHandler}
+                />
                 <span>{task.title}</span>
                 <Button title={"x"} onClick={delTasksHandler} />
               </li>
