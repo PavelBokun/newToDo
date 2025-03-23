@@ -10,6 +10,7 @@ type Props = {
   setFiltered: (filter: FilterValues) => void;
   addTask: (title: string) => void;
   changeTaskStatus: (taskId: string, newStatusValue: boolean) => void;
+  filter:FilterValues
 };
 export type Task = {
   id: string;
@@ -23,11 +24,19 @@ export const TodolistItem = ({
   setFiltered,
   addTask,
   changeTaskStatus,
+  filter
 }: Props) => {
   const [newTaskTitle, setTaskTitle] = useState("");
+  const [error, setError] = useState<string | null>(null)
+  const [error2, setError2] = useState<string | null>(null)
 
+
+  
   const onChengeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(e.currentTarget.value);
+    setError(null)
+    setError2(null)
+
   };
 
   const onPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -43,6 +52,10 @@ export const TodolistItem = ({
     if (trimmedTitle !== "") {
       addTask(trimmedTitle);
       setTaskTitle("");
+    }
+    else {
+      setError('Title is required')
+      setError2('Введите что либо')
     }
   };
 
@@ -60,13 +73,15 @@ export const TodolistItem = ({
     <div>
       <h3>{title}</h3>
       <div>
-        <input
+        <input className={error ? 'error' : ''}
           type="text"
           value={newTaskTitle}
           onChange={onChengeHandler}
           onKeyDown={onPressHandler}
         />
         <button onClick={addTasks}>+</button>
+        {error && <div className={'error-message'}>{error}</div>}
+        {error2 && <div className={'error-message'}>{error2}</div>}
       </div>
       {tasks.length === 0 ? (
         <span>No tasks</span>
@@ -82,7 +97,7 @@ export const TodolistItem = ({
               console.log(newStatusValue);
             };
             return (
-              <li key={task.id}>
+              <li  className={task.isDone ? 'is-done' : 'red'} key={task.id}>
                 <input
                   type="checkbox"
                   checked={task.isDone}
@@ -97,9 +112,9 @@ export const TodolistItem = ({
       )}
 
       <div className="button">
-        <Button title={"All"} onClick={allFiltered} />
-        <Button title={"Active"} onClick={filteredActive} />
-        <Button title={"Completed"} onClick={filteredComplited} />
+        <Button className={filter === 'all' ? 'active-filter' : ''} title={"All"} onClick={allFiltered} />
+        <Button className={filter === 'active' ? 'active-filter' : ''} title={"Active"} onClick={filteredActive} />
+        <Button className={filter === 'completed' ? 'active-filter' : ''}title={"Completed"} onClick={filteredComplited} />
       </div>
     </div>
   );

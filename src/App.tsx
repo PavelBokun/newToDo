@@ -78,7 +78,7 @@ export const App = () => {
         setFiltered={setFiltered}
         addTask={addTask}
         changeTaskStatus={changeTaskStatus}
-      />
+         filter={filter}      />
       <TodolistItem
         title="Songs"
         tasks={filteredTasks}
@@ -86,7 +86,7 @@ export const App = () => {
         setFiltered={setFiltered}
         addTask={addTask}
         changeTaskStatus={changeTaskStatus}
-      />
+        filter={filter}      />
       <Button />
       <Car car={topCars} />
       <Filter />
