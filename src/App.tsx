@@ -8,7 +8,11 @@ import { Car } from "./topcar";
 import { v1 } from "uuid";
 
 export type FilterValues = "all" | "active" | "completed";
-
+type TodoListType={
+  id:string
+  title:string
+  filter:FilterValues
+}
 export const App = () => {
   const [tasks, setTask] = useState<Task[]>([
     { id: v1(), title: "HTML&CSS", isDone: true },
@@ -57,21 +61,41 @@ export const App = () => {
 
   const [filter, setFilter] = useState<FilterValues>("all");
 
-  let filteredTasks = tasks;
-  if (filter === "active") {
-    filteredTasks = tasks.filter((task) => !task.isDone);
-  }
-  if (filter === "completed") {
-    filteredTasks = tasks.filter((task) => task.isDone);
-  }
+  
   const setFiltered = (filter: FilterValues) => {
     setFilter(filter);
     console.log(filter);
   };
 
+let todolists: Array<TodoListType>=[
+  {id:v1(),title:'What to learn', filter:'active'},
+  {id:v1(),title:'What to learn2', filter:'completed'}
+]
+
   return (
     <div className="app">
-      <TodolistItem
+
+      {
+        todolists.map((tl)=>{
+          let filteredTasks = tasks;
+  if (tl.filter === "active") {
+    filteredTasks = tasks.filter((task) => !task.isDone);
+  }
+  if (tl.filter === "completed") {
+    filteredTasks = tasks.filter((task) => task.isDone);
+  }
+          return <TodolistItem
+          key={tl.id}
+          title={tl.title}
+          tasks={filteredTasks}
+          delTasks={delTasks}
+          setFiltered={setFiltered}
+          addTask={addTask}
+          changeTaskStatus={changeTaskStatus}
+          filter={tl.filter}      />
+        })
+      }
+      {/* <TodolistItem
         title="What to learn"
         tasks={filteredTasks}
         delTasks={delTasks}
@@ -90,7 +114,7 @@ export const App = () => {
       <Button />
       <Car car={topCars} />
       <Filter />
-      {/* <Count /> */}
+      <Count /> */}
     </div>
   );
 };
