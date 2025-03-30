@@ -70,6 +70,8 @@ export const App = () => {
 let todolists: Array<TodoListType>=[
   {id:v1(),title:'What to learn', filter:'active'},
   {id:v1(),title:'What to learn2', filter:'completed'}
+  {id:v1(),title:'What to learn2', filter:'completed'}
+
 ]
 
   return (
