@@ -3,11 +3,12 @@ import { FilterValues } from "./App";
 import { Button } from "./button";
 
 type Props = {
+  id:string
   title: string;
   tasks: Task[];
   date?: string;
   delTasks: (id: string) => void;
-  setFiltered: (filter: FilterValues) => void;
+  setFiltered: (filter: FilterValues, todilistId:string) => void;
   addTask: (title: string) => void;
   changeTaskStatus: (taskId: string, newStatusValue: boolean) => void;
   filter:FilterValues
@@ -18,6 +19,7 @@ export type Task = {
   isDone: boolean;
 };
 export const TodolistItem = ({
+  id,
   title,
   tasks,
   delTasks,
@@ -60,14 +62,14 @@ export const TodolistItem = ({
   };
 
   const allFiltered = () => {
-    setFiltered("all");
+    setFiltered("all",id);
   };
 
   const filteredActive = () => {
-    setFiltered("active");
+    setFiltered("active",id);
   };
   const filteredComplited = () => {
-    setFiltered("completed");
+    setFiltered("completed",id);
   };
   return (
     <div>

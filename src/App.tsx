@@ -59,20 +59,19 @@ export const App = () => {
     setTask(newState)
   }
 
-  const [filter, setFilter] = useState<FilterValues>("all");
-
-  
-  const setFiltered = (filter: FilterValues) => {
-    setFilter(filter);
-    console.log(filter);
+    
+  const setFiltered = (filter: FilterValues, todolistId:string) => {
+    let todolist=todolists.find((b)=>b.id===todolistId)
+  if(todolist){
+    todolist.filter=filter
+    setTodolist([...todolists])
+  }
   };
 
-let todolists: Array<TodoListType>=[
-  {id:v1(),title:'What to learn', filter:'active'},
-  {id:v1(),title:'What to learn2', filter:'completed'},
-  {id:v1(),title:'What to learn2', filter:'completed'}
-
-]
+let [todolists,setTodolist] = useState <Array<TodoListType>>([
+  {id:v1(),title:'What to learn', filter:'all'},
+  {id:v1(),title:'What to learn2', filter:'all'}
+  ])
 
   return (
     <div className="app">
@@ -87,6 +86,7 @@ let todolists: Array<TodoListType>=[
     filteredTasks = tasks.filter((task) => task.isDone);
   }
           return <TodolistItem
+          id={tl.id}
           key={tl.id}
           title={tl.title}
           tasks={filteredTasks}
