@@ -38,9 +38,12 @@ export const App = () => {
   ];
   
 
-  const delTasks = (taskId: string) => {
+  const delTasks = (taskId: string,todolistId:string) => {
+    let tasks=tasksall[todilistId]
     let delTasknumber = tasks.filter((b) => b.id !== taskId);
-    setTask(delTasknumber);
+    tasksall[todilistId]=delTasknumber
+    
+    setTask({...tasksall});
   };
 
   const addTask = (title: string) => {
@@ -71,20 +74,39 @@ export const App = () => {
     }
   };
 
+  let todilistId1=v1()
+  let todilistId2=v1()
+
   let [todolists, setTodolist] = useState<Array<TodoListType>>([
-    { id: v1(), title: "What to learn", filter: "all" },
-    { id: v1(), title: "What to learn2", filter: "all" },
+    { id: todilistId1, title: "What to learn", filter: "all" },
+    { id: todilistId2, title: "What to learn2", filter: "all" },
   ]);
+  let [tasksall,setTasks]=useState({
+    [todilistId1]:[
+      { id: v1(), title: "HTML&CSS", isDone: true },
+      { id: v1(), title: "JS", isDone: true },
+      { id: v1(), title: "ReactJS", isDone: false },
+      { id: v1(), title: "Redux", isDone: false },
+      { id: v1(), title: "Typescript", isDone: false },
+      { id: v1(), title: "RTK query", isDone: false },
+    ],
+    [todilistId2]:[
+      { id: 1, title: "Hello world", isDone: true },
+      { id: 2, title: "I am Happy", isDone: false },
+      { id: 3, title: "Yo", isDone: false },
+      { id: 4, title: "Redux", isDone: false },
+    ]
+  })
 
   return (
     <div className="app">
       {todolists.map((tl) => {
-        let filteredTasks = tasks;
+        let filteredTasks = tasksall[tl.id];
         if (tl.filter === "active") {
-          filteredTasks = tasks.filter((task) => !task.isDone);
+          filteredTasks = tasksall[tl.id].filter((task) => !task.isDone);
         }
         if (tl.filter === "completed") {
-          filteredTasks = tasks.filter((task) => task.isDone);
+          filteredTasks = tasksall[tl.id].filter((task) => task.isDone);
         }
         return (
           <>
@@ -99,7 +121,7 @@ export const App = () => {
             changeTaskStatus={changeTaskStatus}
             filter={tl.filter}
           />
-          <Lists />
+          {/* <Lists /> */}
           </>
         );
       })}
