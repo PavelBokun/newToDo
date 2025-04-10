@@ -7,10 +7,10 @@ type Props = {
   title: string;
   tasks: Task[];
   date?: string;
-  delTasks: (id: string) => void;
+  delTasks: (id: string,todolistId:string) => void;
   setFiltered: (filter: FilterValues, todilistId:string) => void;
-  addTask: (title: string) => void;
-  changeTaskStatus: (taskId: string, newStatusValue: boolean) => void;
+  addTask: (title: string,todolistId:string) => void;
+  changeTaskStatus: (taskId: string, newStatusValue: boolean, todolistId:string) => void;
   filter:FilterValues
 };
 export type Task = {
@@ -52,7 +52,7 @@ export const TodolistItem = ({
   const addTasks = () => {
     const trimmedTitle = newTaskTitle.trim()
     if (trimmedTitle !== "") {
-      addTask(trimmedTitle);
+      addTask(trimmedTitle,id);
       setTaskTitle("");
     }
     else {
@@ -90,12 +90,12 @@ export const TodolistItem = ({
       ) : (
         <ul>
           {tasks.map((task) => {
-            const delTasksHandler = () => delTasks(task.id);
+            const delTasksHandler = () => delTasks(task.id,id);
             const changeTaskStatusHandler = (
               e: ChangeEvent<HTMLInputElement>
             ) => {
               const newStatusValue = e.currentTarget.checked;
-              changeTaskStatus(task.id, newStatusValue);
+              changeTaskStatus(task.id, newStatusValue,id);
               console.log(newStatusValue);
             };
             return (
