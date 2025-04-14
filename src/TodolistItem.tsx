@@ -44,7 +44,7 @@ export const TodolistItem = ({
   const onPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       // Используем e.key вместо e.charCode
-      addTask(newTaskTitle);
+      addTask(newTaskTitle,id);
       setTaskTitle("");
     }
   };

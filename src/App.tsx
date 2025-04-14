@@ -42,13 +42,7 @@ export const App = () => {
   ];
   
 
-  // const delTasks = (taskId: string,todolistId:string) => {
-  //   let tasks=tasksall[todolistId]
-  //   let delTasknumber = tasks.filter((b) => b.id !== taskId);
-  //   tasksall[todolistId]=delTasknumber
-    
-  //   setTasks({...tasksall});
-  // };
+
   const delTasks = (taskId: string, todolistId: string) => {
     const updatedTasks = { ...tasksall };
     updatedTasks[todolistId] = updatedTasks[todolistId].filter((b) => b.id !== taskId);
@@ -56,13 +50,7 @@ export const App = () => {
   };
   
 
-  // const addTask = (title: string,todolistId:string) => {
-  //   let newtask = { id: v1(), title: title, isDone: false };
-  //   let tasks=tasksall[todolistId]
-  //   let newTasks = [newtask, ...tasks];
-  //   tasksall[todolistId]=newTasks
-  //   setTasks({...tasksall});
-  // };
+  
   const addTask = (title: string, todolistId: string) => {
     const updatedTasks = { ...tasksall };
     const newTask = { id: v1(), title, isDone: false };
@@ -70,20 +58,7 @@ export const App = () => {
     setTasks(updatedTasks);
   };
   
-  // можно и так
-  // const changeTaskStatus = (taskId: string, isDone: boolean) => {
-  //   const task=tasks.find((b)=>b.id===taskId)
-  //   if (task){
-  //     task.isDone=isDone
-  //   }
-  //   setTask([...tasks])
-  // };
-  // const changeTaskStatus = (taskId: string, isDone: boolean) => {
-  //   const newState = tasks.map((task) =>
-  //     task.id == taskId ? { ...task, isDone } : task
-  //   );
-  //   setTask(newState);
-  // };
+ 
   const changeTaskStatus = (taskId: string, isDone: boolean, todolistId: string) => {
     const updatedTasks = { ...tasksall };
     updatedTasks[todolistId] = updatedTasks[todolistId].map((task) =>
