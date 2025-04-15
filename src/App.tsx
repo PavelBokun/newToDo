@@ -77,7 +77,6 @@ export const App = () => {
     }
   };
   const delTodo = (todolistId: string) => {
-    debugger;
     let deltodolists = todolists.filter((b) => b.id !== todolistId);
     setTodolist(deltodolists);
     delete tasksall[todolistId];
