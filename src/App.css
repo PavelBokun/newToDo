@@ -29,3 +29,7 @@ color: blueviolet;
 font-weight: bold;
 
 }
+.todo{
+  display: flex;
+  flex-direction: row;
+}
