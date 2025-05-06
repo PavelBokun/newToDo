@@ -9,7 +9,7 @@ import { v1 } from "uuid";
 import { Lists } from "./fetch";
 
 export type FilterValues = "all" | "active" | "completed";
-type TodoListType = {
+ export type TodoListType = {
   id: string;
   title: string;
   filter: FilterValues;
@@ -56,7 +56,6 @@ export const App = () => {
     setTasks(updatedTasks);
   };
 
-  //  ????
   const changeTaskStatus = (
     taskId: string,
     isDone: boolean,
@@ -122,40 +121,22 @@ export const App = () => {
             <TodolistItem
               id={tl.id}
               key={tl.id}
-              title={tl.title}
+              // title={tl.title}
               tasks={filteredTasks}
               delTasks={delTasks}
               setFiltered={setFiltered}
               addTask={addTask}
               changeTaskStatus={changeTaskStatus}
-              filter={tl.filter}
-              delTodo={delTodo}
-            />
+              // filter={tl.filter}
+              delTodo={delTodo} 
+              todolist={tl}
+                        />
             {/* <Lists /> */}
             
           </>
         );
       })}
-      {/* <TodolistItem
-        title="What to learn"
-        tasks={filteredTasks}
-        delTasks={delTasks}
-        setFiltered={setFiltered}
-        addTask={addTask}
-        changeTaskStatus={changeTaskStatus}
-         filter={filter}      />
-      <TodolistItem
-        title="Songs"
-        tasks={filteredTasks}
-        delTasks={delTasks}
-        setFiltered={setFiltered}
-        addTask={addTask}
-        changeTaskStatus={changeTaskStatus}
-        filter={filter}      />
-      <Button />
-      <Car car={topCars} />
-      <Filter />
-      <Count /> */}
+      
     </div>
   );
 };

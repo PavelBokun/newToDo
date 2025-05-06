@@ -1,17 +1,18 @@
 import { ChangeEvent, useState } from "react";
-import { FilterValues } from "./App";
+import { FilterValues, TodoListType } from "./App";
 import { Button } from "./button";
 
 type Props = {
   id:string
-  title: string;
+  // title: string;
+  todolist:TodoListType,
   tasks: Task[];
   date?: string;
   delTasks: (id: string,todolistId:string) => void;
   setFiltered: (filter: FilterValues, todilistId:string) => void;
   addTask: (title: string,todolistId:string) => void;
   changeTaskStatus: (taskId: string, newStatusValue: boolean, todolistId:string) => void;
-  filter:FilterValues
+  // filter:FilterValues
   delTodo:(todolistId:string)=>void
 };
 export type Task = {
@@ -21,13 +22,14 @@ export type Task = {
 };
 export const TodolistItem = ({
   id,
-  title,
+  // title,
+  todolist,
   tasks,
   delTasks,
   setFiltered,
   addTask,
   changeTaskStatus,
-  filter,
+  // filter,
   delTodo
 }: Props) => {
   const [newTaskTitle, setTaskTitle] = useState("");
@@ -80,7 +82,7 @@ let removeTodo=()=>{
   return (
     <div >
       <div className="todo">
-      <h3>{title}</h3><button title="Button" onClick={removeTodo}>x</button>
+      <h3>{todolist.title}</h3><button title="Button" onClick={removeTodo}>x</button>
       </div>
       <div>
         <input className={error ? 'error' : ''}
@@ -122,9 +124,9 @@ let removeTodo=()=>{
       )}
 
       <div className="button">
-        <Button className={filter === 'all' ? 'active-filter' : ''} title={"All"} onClick={allFiltered} />
-        <Button className={filter === 'active' ? 'active-filter' : ''} title={"Active"} onClick={filteredActive} />
-        <Button className={filter === 'completed' ? 'active-filter' : ''}title={"Completed"} onClick={filteredComplited} />
+        <Button className={todolist.filter === 'all' ? 'active-filter' : ''} title={"All"} onClick={allFiltered} />
+        <Button className={todolist.filter === 'active' ? 'active-filter' : ''} title={"Active"} onClick={filteredActive} />
+        <Button className={todolist.filter === 'completed' ? 'active-filter' : ''}title={"Completed"} onClick={filteredComplited} />
       </div>
     </div>
   );
