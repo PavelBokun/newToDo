@@ -61,7 +61,7 @@ export const TodolistItem = ({
     }
     else {
       setError('Title is required')
-      setError2('Введите что либо')
+      setError2 ('нужно ввести текст')
     }
   };
 
