@@ -4,7 +4,6 @@ import { Count } from "./count";
 import { Button } from "./dd";
 import { Filter } from "./filter";
 import { Task, TodolistItem } from "./TodolistItem";
-import { Car } from "./topcar";
 import { v1 } from "uuid";
 import { Lists } from "./fetch";
 
