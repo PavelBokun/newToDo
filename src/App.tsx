@@ -66,12 +66,13 @@ export const App = () => {
   };
 
   const setFiltered = (filter: FilterValues, todolistId: string) => {
-    let todolist = todolists.find((b) => b.id === todolistId);
-    if (todolist) {
-      todolist.filter = filter;
-      setTodolist([...todolists]);
+    // let todolist = todolists.find((b) => b.id === todolistId);
+    // if (todolist) {
+    //   todolist.filter = filter;
+    //   setTodolist([...todolists]);
+      setTodolist(todolists.map(tl=>tl.id != todolistId?{...tl,filter:filter}:tl))
     }
-  };
+  
   const delTodo = (todolistId: string) => {
     let deltodolists = todolists.filter((b) => b.id !== todolistId);
     setTodolist(deltodolists);
