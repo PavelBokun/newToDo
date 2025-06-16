@@ -44,10 +44,11 @@ export const App = () => {
   };
 
   const addTask = (title: string, todolistId: string) => {
-    const updatedTasks = { ...tasksall };
-    const newTask = { id: v1(), title, isDone: false };
-    updatedTasks[todolistId] = [newTask, ...updatedTasks[todolistId]];
-    setTasks(updatedTasks);
+    // const updatedTasks = { ...tasksall };
+    // const newTask = { id: v1(), title, isDone: false };
+    // updatedTasks[todolistId] = [newTask, ...updatedTasks[todolistId]];
+    // setTasks(updatedTasks);
+    setTasks({...tasksall, [todolistId]:[...tasksall[todolistId],{ id: v1(), title, isDone: false }]})
   };
 
   const changeTaskStatus = (
