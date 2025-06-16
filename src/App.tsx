@@ -35,11 +35,12 @@ export const App = () => {
   ];
 
   const delTasks = (taskId: string, todolistId: string) => {
-    const updatedTasks = { ...tasksall };
-    updatedTasks[todolistId] = updatedTasks[todolistId].filter(
-      (b) => b.id !== taskId
-    );
-    setTasks(updatedTasks);
+    // const updatedTasks = { ...tasksall };
+    // updatedTasks[todolistId] = updatedTasks[todolistId].filter(
+    //   (b) => b.id !== taskId
+    // );
+    // setTasks(updatedTasks);
+    setTasks({...tasksall, [todolistId]:tasksall[todolistId].filter( (b) => b.id !== taskId)})
   };
 
   const addTask = (title: string, todolistId: string) => {
