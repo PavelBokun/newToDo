@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import { Count } from "./count";
-import { Filter } from "./filter";
+
+
 import { Task, TodolistItem } from "./TodolistItem";
 import { v1 } from "uuid";
-import { Lists } from "./fetch";
+
 
 export type FilterValues = "all" | "active" | "completed";
  export type TodoListType = {
@@ -17,22 +17,22 @@ type TodoListTypeState = {
 };
 
 export const App = () => {
-  const [tasks, setTask] = useState<Task[]>([
-    { id: v1(), title: "HTML&CSS", isDone: true },
-    { id: v1(), title: "JS", isDone: true },
-    { id: v1(), title: "ReactJS", isDone: false },
-    { id: v1(), title: "Redux", isDone: false },
-    { id: v1(), title: "Typescript", isDone: false },
-    { id: v1(), title: "RTK query", isDone: false },
-  ]);
+  // const [tasks, setTask] = useState<Task[]>([
+  //   { id: v1(), title: "HTML&CSS", isDone: true },
+  //   { id: v1(), title: "JS", isDone: true },
+  //   { id: v1(), title: "ReactJS", isDone: false },
+  //   { id: v1(), title: "Redux", isDone: false },
+  //   { id: v1(), title: "Typescript", isDone: false },
+  //   { id: v1(), title: "RTK query", isDone: false },
+  // ]);
 
   
 
-  const topCars = [
-    { id: 1, manufacturer: "BMW", model: "m5cs" },
-    { id: 2, manufacturer: "Mercedes", model: "e63s" },
-    { id: 3, manufacturer: "Audi", model: "rs6" },
-  ];
+  // const topCars = [
+  //   { id: 1, manufacturer: "BMW", model: "m5cs" },
+  //   { id: 2, manufacturer: "Mercedes", model: "e63s" },
+  //   { id: 3, manufacturer: "Audi", model: "rs6" },
+  // ];
 
   const delTasks = (taskId: string, todolistId: string) => {
     // const updatedTasks = { ...tasksall };
@@ -56,11 +56,13 @@ export const App = () => {
     isDone: boolean,
     todolistId: string
   ) => {
-    const updatedTasks = { ...tasksall };
-    updatedTasks[todolistId] = updatedTasks[todolistId].map((task) =>
-      task.id === taskId ? { ...task, isDone } : task
-    );
-    setTasks({ ...updatedTasks });
+    // const updatedTasks = { ...tasksall };
+    // updatedTasks[todolistId] = updatedTasks[todolistId].map((task) =>
+    //   task.id === taskId ? { ...task, isDone } : task
+    // );
+    // setTasks({ ...updatedTasks });
+    setTasks({...tasksall,[todolistId]:tasksall[todolistId].map((task) =>
+      task.id === taskId ? { ...task, isDone } : task)})
   };
 
   const setFiltered = (filter: FilterValues, todolistId: string) => {
