@@ -33,3 +33,9 @@ font-weight: bold;
   display: flex;
   flex-direction: row;
 }
+
+.all{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

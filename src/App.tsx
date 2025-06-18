@@ -81,7 +81,7 @@ export const App = () => {
     //   setTodolist([...todolists]);
     setTodolist(
       todolists.map((tl) =>
-        tl.id != todolistId ? { ...tl, filter: filter } : tl
+        tl.id === todolistId ? { ...tl, filter: filter } : tl
       )
     );
   };
@@ -117,10 +117,10 @@ export const App = () => {
     ],
   });
 
-  return (
-    <div className="app">
-      {todolists.map((tl) => {
-        let filteredTasks = tasksall[tl.id];
+
+   const TodolistComponent=
+  todolists.map(tl=>{
+let filteredTasks = tasksall[tl.id];
         if (tl.filter === "active") {
           filteredTasks = tasksall[tl.id].filter((task) => !task.isDone);
         }
@@ -145,7 +145,42 @@ export const App = () => {
             {/* <Lists /> */}
           </>
         );
-      })}
+  })
+  
+  return(
+    <div className="todo">
+        {TodolistComponent}
     </div>
-  );
+  )
+  // return (
+  //   <div className="app">
+  //     {todolists.map((tl) => {
+  //       let filteredTasks = tasksall[tl.id];
+  //       if (tl.filter === "active") {
+  //         filteredTasks = tasksall[tl.id].filter((task) => !task.isDone);
+  //       }
+  //       if (tl.filter === "completed") {
+  //         filteredTasks = tasksall[tl.id].filter((task) => task.isDone);
+  //       }
+  //       return (
+  //         <>
+  //           <TodolistItem
+  //             id={tl.id}
+  //             key={tl.id}
+  //             // title={tl.title}
+  //             tasks={filteredTasks}
+  //             delTasks={delTasks}
+  //             setFiltered={setFiltered}
+  //             addTask={addTask}
+  //             changeTaskStatus={changeTaskStatus}
+  //             // filter={tl.filter}
+  //             delTodo={delTodo}
+  //             todolist={tl}
+  //           />
+  //           {/* <Lists /> */}
+  //         </>
+  //       );
+  //     })}
+  //   </div>
+  // );
 };
