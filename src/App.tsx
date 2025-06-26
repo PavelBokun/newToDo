@@ -106,7 +106,6 @@ export const App = () => {
       { id: v1(), title: "JS", isDone: true },
       { id: v1(), title: "ReactJS", isDone: false },
       { id: v1(), title: "Redux", isDone: false },
-      { id: v1(), title: "Typescript", isDone: false },
       { id: v1(), title: "RTK query", isDone: false },
     ],
     [todilistId2]: [
@@ -114,6 +113,8 @@ export const App = () => {
       { id: v1(), title: "I am Happy", isDone: false },
       { id: v1(), title: "Yo", isDone: false },
       { id: v1(), title: "Redux", isDone: false },
+      { id: v1(), title: "Typescript", isDone: false },
+
     ],
   });
 
