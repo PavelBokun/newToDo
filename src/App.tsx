@@ -15,38 +15,17 @@ type TodoListTypeState = {
 };
 
 export const App = () => {
-  // const [tasks, setTask] = useState<Task[]>([
-  //   { id: v1(), title: "HTML&CSS", isDone: true },
-  //   { id: v1(), title: "JS", isDone: true },
-  //   { id: v1(), title: "ReactJS", isDone: false },
-  //   { id: v1(), title: "Redux", isDone: false },
-  //   { id: v1(), title: "Typescript", isDone: false },
-  //   { id: v1(), title: "RTK query", isDone: false },
-  // ]);
-
-  // const topCars = [
-  //   { id: 1, manufacturer: "BMW", model: "m5cs" },
-  //   { id: 2, manufacturer: "Mercedes", model: "e63s" },
-  //   { id: 3, manufacturer: "Audi", model: "rs6" },
-  // ];
+  
 
   const delTasks = (taskId: string, todolistId: string) => {
-    // const updatedTasks = { ...tasksall };
-    // updatedTasks[todolistId] = updatedTasks[todolistId].filter(
-    //   (b) => b.id !== taskId
-    // );
-    // setTasks(updatedTasks);
-    setTasks({
+       setTasks({
       ...tasksall,
       [todolistId]: tasksall[todolistId].filter((b) => b.id !== taskId),
     });
   };
 
   const addTask = (title: string, todolistId: string) => {
-    // const updatedTasks = { ...tasksall };
-    // const newTask = { id: v1(), title, isDone: false };
-    // updatedTasks[todolistId] = [newTask, ...updatedTasks[todolistId]];
-    // setTasks(updatedTasks);
+    
     setTasks({
       ...tasksall,
       [todolistId]: [
@@ -61,11 +40,7 @@ export const App = () => {
     isDone: boolean,
     todolistId: string
   ) => {
-    // const updatedTasks = { ...tasksall };
-    // updatedTasks[todolistId] = updatedTasks[todolistId].map((task) =>
-    //   task.id === taskId ? { ...task, isDone } : task
-    // );
-    // setTasks({ ...updatedTasks });
+    
     setTasks({
       ...tasksall,
       [todolistId]: tasksall[todolistId].map((task) =>
@@ -75,10 +50,7 @@ export const App = () => {
   };
 
   const setFiltered = (filter: FilterValues, todolistId: string) => {
-    // let todolist = todolists.find((b) => b.id === todolistId);
-    // if (todolist) {
-    //   todolist.filter = filter;
-    //   setTodolist([...todolists]);
+    
     setTodolist(
       todolists.map((tl) =>
         tl.id === todolistId ? { ...tl, filter: filter } : tl
