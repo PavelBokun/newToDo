@@ -84,6 +84,12 @@ export const App = () => {
       { id: v1(), title: "ReactJS", isDone: false },
       { id: v1(), title: "Redux", isDone: false },
       { id: v1(), title: "RTK query", isDone: false },
+      { id: v1(), title: "HTML&CSS", isDone: true },
+      { id: v1(), title: "JS", isDone: true },
+      { id: v1(), title: "ReactJS", isDone: false },
+      { id: v1(), title: "Redux", isDone: false },
+      { id: v1(), title: "RTK query", isDone: false },
+      { id: v1(), title: "HTML&CSS", isDone: true },
     ],
     [todilistId2]: [
       { id: v1(), title: "Hello world", isDone: true },
