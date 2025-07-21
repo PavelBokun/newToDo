@@ -135,7 +135,9 @@ let filteredTasks = tasksall[tl.id];
   return(
     <div className="todo">
         {TodolistComponent}
+       <div>
         <Lists />
+        </div> 
     </div>
   )
   // return (
