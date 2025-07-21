@@ -3,6 +3,7 @@ import "./App.css";
 
 import { Task, TodolistItem } from "./TodolistItem";
 import { v1 } from "uuid";
+import{Lists} from "./fetch.tsx"
 
 export type FilterValues = "all" | "active" | "completed";
 export type TodoListType = {
@@ -134,6 +135,7 @@ let filteredTasks = tasksall[tl.id];
   return(
     <div className="todo">
         {TodolistComponent}
+        <Lists />
     </div>
   )
   // return (

@@ -29,7 +29,7 @@ export const Lists = () => {
   if (loading) {
     return <p>Загрузка данных...</p>;
   }
-
+ 
   // Если произошла ошибка
   if (error) {
     return <p>Ошибка: {error}</p>;
