@@ -72,6 +72,8 @@ export const App = () => {
   let [todolists, setTodolist] = useState<Array<TodoListType>>([
     { id: todilistId1, title: "What to learn", filter: "all" },
     { id: todilistId2, title: "What to learn2", filter: "all" },
+   
+
   ]);
   let [tasksall, setTasks] = useState<TodoListTypeState>({
     [todilistId1]: [
@@ -98,6 +100,8 @@ export const App = () => {
       { id: v1(), title: "Yo", isDone: false },
       { id: v1(), title: "Redux", isDone: false },
       { id: v1(), title: "Typescript", isDone: false },
+      { id: v1(), title: "Redux", isDone: false },
+      { id: v1(), title: "Typescript", isDone: false }
 
     ],
   });
