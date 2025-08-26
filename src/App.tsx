@@ -66,6 +66,13 @@ export const App = () => {
     setTasks({ ...tasksall });
   };
 
+  const addTodo = (title: string) => {
+    let todolistId = todilistId1
+    let newTodo: TodoListType = { id: todolistId, title: title, filter: "all" };
+    setTodolist([newTodo, ...todolists]);
+    setTasks({ ...tasksall, [todolistId]: [] });
+  };
+
   let todilistId1 = v1();
   let todilistId2 = v1();
 
@@ -124,6 +131,7 @@ let filteredTasks = tasksall[tl.id];
               // filter={tl.filter}
               delTodo={delTodo}
               todolist={tl}
+              addTodo={addTodo}
             />
             {/* <Lists /> */}
           </>

@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { FilterValues, TodoListType } from "./App";
 import { Button } from "./button";
 
+
 type Props = {
   id:string
   // title: string;
@@ -14,6 +15,7 @@ type Props = {
   changeTaskStatus: (taskId: string, newStatusValue: boolean, todolistId:string) => void;
   // filter:FilterValues
   delTodo:(todolistId:string)=>void
+  addTodo:(title:string)=>void
 };
 export type Task = {
   id: string;
@@ -108,6 +110,8 @@ let removeTodo=()=>{
               changeTaskStatus(task.id, newStatusValue,id);
               console.log(newStatusValue);
             };
+            
+
             return (
               <li  className={task.isDone ? 'is-done' : 'red'} key={task.id}>
                 <input
@@ -117,6 +121,8 @@ let removeTodo=()=>{
                 />
                 <span>{task.title}</span>
                 <Button title={"x"} onClick={delTasksHandler} />
+                {/* <Button title={"add"} onClick={addTodo} /> */}
+
               </li>
             );
           })}
