@@ -130,6 +130,7 @@ let removeTodo=()=>{
       )}
 
       <div className="button">
+        
         <Button className={todolist.filter === 'all' ? 'active-filter' : ''} title={"All"} onClick={allFiltered} />
         <Button className={todolist.filter === 'active' ? 'active-filter' : ''} title={"Active"} onClick={filteredActive} />
         <Button className={todolist.filter === 'completed' ? 'active-filter' : ''}title={"Completed"} onClick={filteredComplited} />

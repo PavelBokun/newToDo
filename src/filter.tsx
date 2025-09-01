@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import { useState } from "react";
 
 type Money = {
@@ -58,7 +59,7 @@ if(filter === "rub")
         </ul>
       )}
       <div>
-        <button onClick={() => finc1("dol")}>dol</button>
+        <Button onClick={() => finc1("dol")}>dol</Button>
         <button onClick={() => finc1("rub")}>rub</button>
         <button onClick={() => finc1("all")}>all</button>
       </div>
