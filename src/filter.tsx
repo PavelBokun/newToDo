@@ -59,7 +59,10 @@ if(filter === "rub")
         </ul>
       )}
       <div>
-        <Button onClick={() => finc1("dol")}>dol</Button>
+        <Button 
+        size="small"
+        variant="contained"
+        onClick={() => finc1("dol")}>dol</Button>
         <button onClick={() => finc1("rub")}>rub</button>
         <button onClick={() => finc1("all")}>all</button>
       </div>
