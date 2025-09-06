@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { FilterValues, TodoListType } from "./App";
 import { Button1 } from "./button";
-import { IconButton } from "@mui/material";
+import { Checkbox, IconButton, TextField } from "@mui/material";
 // import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -92,13 +92,21 @@ export const TodolistItem = ({
         </IconButton>
       </div>
       <div>
-        <input
+        <TextField
+        variant="filled"
           className={error ? "error" : ""}
           type="text"
           value={newTaskTitle}
           onChange={onChengeHandler}
           onKeyDown={onPressHandler}
-        />
+        ></TextField>
+        {/* <input
+          className={error ? "error" : ""}
+          type="text"
+          value={newTaskTitle}
+          onChange={onChengeHandler}
+          onKeyDown={onPressHandler}
+        /> */}
         <button onClick={addTasks}>+</button>
         {error && <div className={"error-message"}>{error}</div>}
         {error2 && <div className={"error-message"}>{error2}</div>}
@@ -119,11 +127,16 @@ export const TodolistItem = ({
 
             return (
               <li className={task.isDone ? "is-done" : "red"} key={task.id}>
-                <input
+                {/* <input
                   type="checkbox"
                   checked={task.isDone}
                   onChange={changeTaskStatusHandler}
-                />
+                /> */}
+                <Checkbox
+                  size="small"
+                  checked={task.isDone}
+                  onChange={changeTaskStatusHandler}
+                ></Checkbox>
                 <span>{task.title}</span>
                 <IconButton aria-label="delete" onClick={delTasksHandler}>
                   <DeleteIcon />
